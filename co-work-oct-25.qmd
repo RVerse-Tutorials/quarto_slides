@@ -1,0 +1,116 @@
+---
+title: "co-work Oct 25"
+format:
+  revealjs: 
+    theme: serif
+---
+
+## Today's theme
+
+-   Keep working together on Pathways
+-   Learn a little about "agile" methodologies
+-   Learn about GitHub project boards
+-   co-work
+
+## What is agile?
+
+A **lightweight** workflow **structure** for software development which is characterized by 4 key features.  
+
+Today agile methodologies are the norm in software development, and are widely used for other types of project management.
+
+Term is traced back to the 2001 [Agile Manifesto](https://agilemanifesto.org/), but the ideas are much earlier and broader.
+
+
+## 4 elements
+
+![](images/agile-elements.png){fig-align="center" width="80%"}
+
+## Task cycles
+
+A key element of agile methodologies is iterative cycles
+
+![](images/PDCA-Multi-Loop.png){fig-align="center" width="80%"}
+
+This was popularized by the work of William Edwards Deming.
+
+::: footer
+1 Leading thinker in statistical quality control and industrial engineering in the 1950s to 1980s. Plan-Do-Check-Act (PDCA) cycle.
+:::
+
+## Experiential learning
+
+In "experiential learning" (David A Kolb, 1970s-1980s), the activity is the teacher via explicit periods of reflection and experimentation.
+
+![](images/Kolb-stages.jpeg){fig-align="center" width="80%"}
+
+## 
+
+![](images/agile-elements.png){fig-align="center" width="80%"}
+
+## Self-organizing workflows
+
+A workflow or structure that naturally and organically improves team (or project) flow and efficiency.
+
+::: columns
+::: {.column width="50%"}
+
+### Task boards
+- visualize your workflow
+- team awareness
+- encourages cycles of work
+:::
+::: {.column width="50%"}
+
+### Facetime
+- short frequent synchronous check-ins, aka "stand-ups"
+- co-working, group or often paired
+:::
+:::
+
+## Task boards
+
+![](images/GitHub-task-board.png){fig-align="center" width="100%"}
+<!--
+## Why use a task board?
+
+Visualize the flow of work so that we can improve it incrementally and organically--meaning no fixed framework. Just seeing your workflow helps you see the problems.
+
+-   transparency -- visual representation of the team's workflow
+
+-   iterative and incremental
+
+-   helps define a "minimal workable product
+
+-   problems with task "flow" are addressed as they arise
+
+::: footer
+Atlassian Kanban video series: [intro](https://www.youtube.com/watch?v=iVaFVa7HYj4), [designing your Kanban board](https://www.youtube.com/watch?v=Bcid33tgq8A), [work in progress limits](https://www.youtube.com/watch?v=zEJn6eQO6FE), [writing kanban cards](https://www.youtube.com/watch?v=PxXdcQrPIUI) 
+:::
+-->
+
+
+## GitHub project boards
+
+Let's start a project board with GitHub!
+
+- Create a board
+- Make some issues
+- Add issues to a board
+
+## 30 minutes of co-work time
+
+::: columns
+::: {.column width="50%"}
+### Work on Pathways
+- Ideas for things needed to move you towards a Pathway goals
+- Identify some concrete tasks
+:::
+::: {.column width="50%"}
+### GitHub Project Boards
+- Play around
+- Raise hand or post in chat for help
+- Mentors/helpers can go in a breakout room with you
+:::
+:::
+
+Super ok to jump in an out of break out rooms to see what folks are talking about!
