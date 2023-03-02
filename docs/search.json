@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "today",
+    "title": "Misc Presentations",
     "section": "",
     "text": "Misc Presentations\nClick Home link in lower right to get back to this page."
   },
@@ -84,32 +84,39 @@
     "text": "Example\nRepos on nmfs-opensci using the GitHub REST API\n\norg <- \"nmfs-opensci\"\nurl <- paste0(\"https://api.github.com/search/repositories?q=org:\", org)\nres <- httr::GET(url)\ndat <- jsonlite::fromJSON(rawToChar(res$content))\nhead(dat$items[,c(\"name\", \"has_issues\")])                      \n\n                     name has_issues\n1       quarto_titlepages       TRUE\n2           quarto-thesis       TRUE\n3      NOAA-quarto-simple       TRUE\n4        NOAA-quarto-book       TRUE\n5            QuartoReport       TRUE\n6 12-07-21-GitHub-Actions       TRUE"
   },
   {
-    "objectID": "REST-API-feb-28.html#api-keys",
-    "href": "REST-API-feb-28.html#api-keys",
+    "objectID": "REST-API-feb-28.html#streamnet-cax-rest-api",
+    "href": "REST-API-feb-28.html#streamnet-cax-rest-api",
     "title": "Quick Start: REST API in R",
-    "section": "API Keys",
-    "text": "API Keys\nThe API Key that I am showing is a public read-only API key for accessing this database.\nDon’t post or commit API Keys for private databases or a write(!!!) key."
+    "section": "StreamNet CAX REST API",
+    "text": "StreamNet CAX REST API\nThis is the database I want to get data from\nhttps://www.streamnet.org/resources/exchange-tools/rest-api-documentation/\nOk, not so helpful. In particular it doesn’t show me the full url and doesn’t tell me that I need an API key or how to pass it in!"
+  },
+  {
+    "objectID": "REST-API-feb-28.html#whats-an-api-key",
+    "href": "REST-API-feb-28.html#whats-an-api-key",
+    "title": "Quick Start: REST API in R",
+    "section": "What’s an API key??",
+    "text": "What’s an API key??\n\nWhat’s an API key?? A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, etc.\nDo I need one? No! Some REST APIs don’t need a key.\nHow did you know you needed one for CAX? I didn’t. My queries didn’t work and so my collaborator went and talked to the CAX folks who set up the REST API."
+  },
+  {
+    "objectID": "REST-API-feb-28.html#stop-api-keys",
+    "href": "REST-API-feb-28.html#stop-api-keys",
+    "title": "Quick Start: REST API in R",
+    "section": "Stop: API Keys",
+    "text": "Stop: API Keys\nrCAX uses public read-only API key for accessing this public database. It is part of the package. But for the raw code shown in this talk I X’d out the key. Even though it is a public and not sensitive.\nSee the comments at the end for how to write code without including the API key in your code. You’ll see that code if you look at the raw qmd file for this talk."
   },
   {
     "objectID": "REST-API-feb-28.html#get-a-url-query-that-works.",
     "href": "REST-API-feb-28.html#get-a-url-query-that-works.",
     "title": "Quick Start: REST API in R",
     "section": "Get a URL query that works.",
-    "text": "Get a URL query that works.\nHow? Look at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.\nres <- httr::GET(\"https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5&page=1&per_page=10\")\ndata <-  jsonlite::fromJSON(rawToChar((res$content)))"
-  },
-  {
-    "objectID": "REST-API-feb-28.html#streamnet-documentation",
-    "href": "REST-API-feb-28.html#streamnet-documentation",
-    "title": "Quick Start: REST API in R",
-    "section": "StreamNet Documentation",
-    "text": "StreamNet Documentation\nLet’s look at the StreamNet documentation https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/\nStart running GET calls with URLs and see if you can figure out the syntax."
+    "text": "Get a URL query that works.\nLook at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.\nres <- httr::GET(\"https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10\")\ndata <-  jsonlite::fromJSON(rawToChar((res$content)))\nLet’s parse this URL\nhttps://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10"
   },
   {
     "objectID": "REST-API-feb-28.html#tables",
     "href": "REST-API-feb-28.html#tables",
     "title": "Quick Start: REST API in R",
     "section": "Tables",
-    "text": "Tables\nLooking at the documentation, you might guess that this gives you “tables”. Who knows what this is but let’s try it:\nres <- httr::GET(\"https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5\")\ndata <-  jsonlite::fromJSON(rawToChar((res$content)))\nJack Pot!! The table ids that I need for my queries!"
+    "text": "Tables\nLooking at the documentation, you might guess that this gives you “tables”. Let’s try it:\nres <- httr::GET(\"https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX\")\ndata <-  jsonlite::fromJSON(rawToChar((res$content)))\nJack Pot!! The table ids that I need for my queries!"
   },
   {
     "objectID": "REST-API-feb-28.html#keeping-your-api-key-private-1",
@@ -158,14 +165,28 @@
     "href": "REST-API-feb-28.html#rcax_get",
     "title": "Quick Start: REST API in R",
     "section": "rcax_GET()",
-    "text": "rcax_GET()\nThis function is what prepares the url and runs the GET call to the REST API. I copied this from the ropensci/rredlist R package (R client for IUCN REST API\nThe rcax_GET.R file is a series of utility functions.\n\nrcax_GET() - uses crul package\nrcax_base() - base url to REST API\nrcax_ua() - creates a user agent string to tell REST API who is pinging it\ncheck_key() - gets the API key\nrcax_parse() - parses the JSON output"
+    "text": "rcax_GET()\nThis function is what prepares the url and runs the GET call to the REST API. I copied this from the ropensci/rredlist R package (R client for IUCN REST API\nGoal 1. Get this to “work”\nres <- rcax_GET(\"ca/tables\")\nGoal 2. Get this to “work”\nres <- rcax_GET(\"ca\", query=list(table_id=\"xxxx\", XAPIKey=\"xxx\"))\nIt should return some JSON."
   },
   {
     "objectID": "REST-API-feb-28.html#rcax_get-1",
     "href": "REST-API-feb-28.html#rcax_get-1",
     "title": "Quick Start: REST API in R",
     "section": "rcax_GET()",
-    "text": "rcax_GET()\nrcax_GET <- function(path, key = NULL, query=NULL, ...){\n  cli <- crul::HttpClient$new(\n    url = file.path(rcax_base(), path),\n    opts = list(useragent = rcax_ua())\n  )\n  temp <- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)\n  temp$raise_for_status()\n  x <- temp$parse(\"UTF-8\")\n  err_catcher(x)\n  return(x)\n}"
+    "text": "rcax_GET()\nThe rcax_GET.R file is a series of utility functions.\n\nrcax_GET() - uses crul package\nrcax_base() - base url to REST API\nrcax_ua() - creates a user agent string to tell REST API who is pinging it\ncheck_key() - gets the API key\nrcax_parse() - parses the JSON output"
+  },
+  {
+    "objectID": "REST-API-feb-28.html#rcax_get-2",
+    "href": "REST-API-feb-28.html#rcax_get-2",
+    "title": "Quick Start: REST API in R",
+    "section": "rcax_GET()",
+    "text": "rcax_GET()\nRead documentation\n\nurl = everything up to the ?\nquery = the query params as a list\nuseragent = optional but it is a string\n\n    rcax_GET <- function(path, key = NULL, query=NULL, ...){\n      cli <- crul::HttpClient$new(\n        url = file.path(rcax_base(), path),\n        opts = list(useragent = rcax_ua())\n      )\n      temp <- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)\n      temp$raise_for_status()\n      x <- temp$parse(\"UTF-8\")\n      err_catcher(x)\n      return(x)\n    }"
+  },
+  {
+    "objectID": "REST-API-feb-28.html#rcax_get-3",
+    "href": "REST-API-feb-28.html#rcax_get-3",
+    "title": "Quick Start: REST API in R",
+    "section": "rcax_GET()",
+    "text": "rcax_GET()\nres <- httr::GET(\"https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10\")\nrcax_base() <- function() \"https://api.streamnet.org/api/v1\"\npath <- \"ca.json\"\nquery <-\n  list(table_id=\"4EF09E86-2AA8-4C98-A983-A272C2C2C7E3\",\n    XAPIKey=\"XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX\",\n    page=1, per_page=10)\nrcax_ua() <- function() \"rCAX R client\"\nrcax_GET <- function(path, key = NULL, query=NULL, ...){\n  cli <- crul::HttpClient$new(\n    url = file.path(rcax_base(), path),\n    opts = list(useragent = rcax_ua())\n  )\n  temp <- cli$get(query = query, ...)\n  temp$raise_for_status()\n  x <- temp$parse(\"UTF-8\")\n  err_catcher(x)\n  return(x)\n}"
   },
   {
     "objectID": "REST-API-feb-28.html#filter-function-woes-1",

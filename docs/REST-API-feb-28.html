@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Eli Holmes, NWFSC/NOAA">
-  <title>today - Quick Start: REST API in R</title>
+  <title>Misc Presentations - Quick Start: REST API in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -424,26 +424,37 @@ Eli Holmes, NWFSC/NOAA
 </div>
 </div>
 </section>
-<section id="api-keys" class="slide level2">
-<h2>API Keys</h2>
-<p>The API Key that I am showing is a public read-only API key for accessing this database.</p>
-<p>Don’t post or commit API Keys for private databases or a write(!!!) key.</p>
+<section id="streamnet-cax-rest-api" class="slide level2">
+<h2>StreamNet CAX REST API</h2>
+<p>This is the database I want to get data from</p>
+<p><a href="https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/" class="uri">https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/</a></p>
+<p>Ok, not so helpful. In particular it doesn’t show me the full url and doesn’t tell me that I need an API key or how to pass it in!</p>
+</section>
+<section id="whats-an-api-key" class="slide level2">
+<h2>What’s an API key??</h2>
+<ul>
+<li><strong>What’s an API key??</strong> A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, etc.</li>
+<li><strong>Do I need one?</strong> No! Some REST APIs don’t need a key.</li>
+<li><strong>How did you know you needed one for CAX?</strong> I didn’t. My queries didn’t work and so my collaborator went and talked to the CAX folks who set up the REST API.</li>
+</ul>
+</section>
+<section id="stop-api-keys" class="slide level2">
+<h2>Stop: API Keys</h2>
+<p>rCAX uses public read-only API key for accessing this public database. It is part of the package. But for the raw code shown in this talk I X’d out the key. Even though it is a public and not sensitive.</p>
+<p>See the comments at the end for how to write code without including the API key in your code. You’ll see that code if you look at the raw qmd file for this talk.</p>
 </section>
 <section id="get-a-url-query-that-works." class="slide level2">
 <h2>Get a URL query that works.</h2>
-<p><strong>How?</strong> Look at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.</p>
-<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&amp;XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5&amp;page=1&amp;per_page=10")
+<p>Look at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.</p>
+<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&amp;XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&amp;page=1&amp;per_page=10")
 data &lt;-  jsonlite::fromJSON(rawToChar((res$content)))</code></pre>
-</section>
-<section id="streamnet-documentation" class="slide level2">
-<h2>StreamNet Documentation</h2>
-<p>Let’s look at the StreamNet documentation https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/</p>
-<p>Start running GET calls with URLs and see if you can figure out the syntax.</p>
+<p>Let’s parse this URL</p>
+<p><span style="color: blue">https://api.streamnet.org/api/v1</span>/ca.json<span style="color: green">?</span><span style="color: red">table_id=</span>4EF09E86-2AA8-4C98-A983-A272C2C2C7E3<span style="color: green">&amp;</span><span style="color: red">XApiKey=</span>XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX<span style="color: green">&amp;</span><span style="color: red">page=</span>1<span style="color: green">&amp;</span><span style="color: red">per_page=</span>10</p>
 </section>
 <section id="tables" class="slide level2">
 <h2>Tables</h2>
-<p>Looking at the documentation, you might guess that this gives you “tables”. Who knows what this is but let’s try it:</p>
-<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5")
+<p>Looking at the documentation, you might guess that this gives you “tables”. Let’s try it:</p>
+<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
 data &lt;-  jsonlite::fromJSON(rawToChar((res$content)))</code></pre>
 <p>Jack Pot!! The table ids that I need for my queries!</p>
 </section>
@@ -490,6 +501,14 @@ res &lt;- httr::GET(url)</code></pre>
 <section id="rcax_get" class="slide level2">
 <h2>rcax_GET()</h2>
 <p>This function is what prepares the url and runs the <code>GET</code> call to the REST API. I copied this from the <a href="https://github.com/ropensci/rredlist">ropensci/rredlist</a> R package (R client for IUCN REST API</p>
+<p>Goal 1. Get this to “work”</p>
+<pre><code>res &lt;- rcax_GET("ca/tables")</code></pre>
+<p>Goal 2. Get this to “work”</p>
+<pre><code>res &lt;- rcax_GET("ca", query=list(table_id="xxxx", XAPIKey="xxx"))</code></pre>
+<p>It should return some JSON.</p>
+</section>
+<section id="rcax_get-1" class="slide level2">
+<h2>rcax_GET()</h2>
 <p>The <code>rcax_GET.R</code> file is a series of utility functions.</p>
 <ul>
 <li>rcax_GET() - uses crul package</li>
@@ -499,14 +518,42 @@ res &lt;- httr::GET(url)</code></pre>
 <li>rcax_parse() - parses the JSON output</li>
 </ul>
 </section>
-<section id="rcax_get-1" class="slide level2">
+<section id="rcax_get-2" class="slide level2">
 <h2>rcax_GET()</h2>
+<p><a href="https://nwfsc-math-bio.github.io/rCAX/reference/rcax_GET.html">Read documentation</a></p>
+<ul>
+<li>url = everything up to the ?</li>
+<li>query = the query params as a list</li>
+<li>useragent = optional but it is a string</li>
+</ul>
+<pre><code>    rcax_GET &lt;- function(path, key = NULL, query=NULL, ...){
+      cli &lt;- crul::HttpClient$new(
+        url = file.path(rcax_base(), path),
+        opts = list(useragent = rcax_ua())
+      )
+      temp &lt;- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
+      temp$raise_for_status()
+      x &lt;- temp$parse("UTF-8")
+      err_catcher(x)
+      return(x)
+    }</code></pre>
+</section>
+<section id="rcax_get-3" class="slide level2">
+<h2>rcax_GET()</h2>
+<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&amp;XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&amp;page=1&amp;per_page=10")</code></pre>
+<pre><code>rcax_base() &lt;- function() "https://api.streamnet.org/api/v1"
+path &lt;- "ca.json"
+query &lt;-
+  list(table_id="4EF09E86-2AA8-4C98-A983-A272C2C2C7E3",
+    XAPIKey="XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    page=1, per_page=10)
+rcax_ua() &lt;- function() "rCAX R client"</code></pre>
 <pre><code>rcax_GET &lt;- function(path, key = NULL, query=NULL, ...){
   cli &lt;- crul::HttpClient$new(
     url = file.path(rcax_base(), path),
     opts = list(useragent = rcax_ua())
   )
-  temp &lt;- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
+  temp &lt;- cli$get(query = query, ...)
   temp$raise_for_status()
   x &lt;- temp$parse("UTF-8")
   err_catcher(x)

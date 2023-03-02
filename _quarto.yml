@@ -7,7 +7,7 @@ project:
     - REST-API-feb-28.qmd
 
 website:
-  title: "today"
+  title: "Misc Presentations"
   sidebar:
     style: "docked"
     search: true

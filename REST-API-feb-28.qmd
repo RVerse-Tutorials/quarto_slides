@@ -23,11 +23,12 @@ res <- httr::GET(url)
 dat <- jsonlite::fromJSON(rawToChar(res$content))
 head(dat$items[,c("name", "has_issues")])                      
 ```
+
 ## StreamNet CAX REST API
 
 This is the database I want to get data from
 
-[https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/](https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/)
+<https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/>
 
 Ok, not so helpful. In particular it doesn't show me the full url and doesn't tell me that I need an API key or how to pass it in!
 
@@ -35,7 +36,7 @@ Ok, not so helpful. In particular it doesn't show me the full url and doesn't te
 
 -   **What's an API key??** A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, etc.
 -   **Do I need one?** No! Some REST APIs don't need a key.
-- **How did you know you needed one for CAX?** I didn't. My queries didn't work and so my collaborator went and talked to the CAX folks who set up the REST API.
+-   **How did you know you needed one for CAX?** I didn't. My queries didn't work and so my collaborator went and talked to the CAX folks who set up the REST API.
 
 ## Stop: API Keys
 
@@ -50,8 +51,12 @@ Look at the documentation, ask someone, ask the database developers. Getting tha
     res <- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10")
     data <-  jsonlite::fromJSON(rawToChar((res$content)))
 
+Let's parse this URL
+
+[https://api.streamnet.org/api/v1]{style="color: blue"}/ca.json[?]{style="color: green"}[table_id=]{style="color: red"}4EF09E86-2AA8-4C98-A983-A272C2C2C7E3[&]{style="color: green"}[XApiKey=]{style="color: red"}XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX[&]{style="color: green"}[page=]{style="color: red"}1[&]{style="color: green"}[per_page=]{style="color: red"}10
 
 ## Tables
+
 
 Looking at the documentation, you might guess that this gives you "tables". Let's try it:
 
@@ -112,30 +117,74 @@ You are ready to start creating your R package aka R REST API client! Clone some
 
 This function is what prepares the url and runs the `GET` call to the REST API. I copied this from the [ropensci/rredlist](https://github.com/ropensci/rredlist) R package (R client for IUCN REST API
 
-The `rcax_GET.R` file is a series of utility functions.
+Goal 1. Get this to "work" 
+```
+res <- rcax_GET("ca/tables")
+```
+Goal 2. Get this to "work" 
+```
+res <- rcax_GET("ca", query=list(table_id="xxxx", XAPIKey="xxx"))
+```
 
-- rcax_GET() - uses crul package
-- rcax_base() - base url to REST API
-- rcax_ua() - creates a user agent string to tell REST API who is pinging it
-- check_key() - gets the API key
-- rcax_parse() - parses the JSON output
+It should return some JSON.
 
 ## rcax_GET()
 
+The `rcax_GET.R` file is a series of utility functions.
+
+-   rcax_GET() - uses crul package
+-   rcax_base() - base url to REST API
+-   rcax_ua() - creates a user agent string to tell REST API who is pinging it
+-   check_key() - gets the API key
+-   rcax_parse() - parses the JSON output
+
+## rcax_GET()
+
+[Read documentation](https://nwfsc-math-bio.github.io/rCAX/reference/rcax_GET.html)
+
+* url = everything up to the ?
+* query = the query params as a list
+* useragent = optional but it is a string
+
 ```
-rcax_GET <- function(path, key = NULL, query=NULL, ...){
-  cli <- crul::HttpClient$new(
-    url = file.path(rcax_base(), path),
-    opts = list(useragent = rcax_ua())
-  )
-  temp <- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
-  temp$raise_for_status()
-  x <- temp$parse("UTF-8")
-  err_catcher(x)
-  return(x)
-}
+    rcax_GET <- function(path, key = NULL, query=NULL, ...){
+      cli <- crul::HttpClient$new(
+        url = file.path(rcax_base(), path),
+        opts = list(useragent = rcax_ua())
+      )
+      temp <- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
+      temp$raise_for_status()
+      x <- temp$parse("UTF-8")
+      err_catcher(x)
+      return(x)
+    }
 ```
 
+## rcax_GET()
+
+    res <- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10")
+
+```
+rcax_base() <- function() "https://api.streamnet.org/api/v1"
+path <- "ca.json"
+query <-
+  list(table_id="4EF09E86-2AA8-4C98-A983-A272C2C2C7E3",
+    XAPIKey="XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    page=1, per_page=10)
+rcax_ua() <- function() "rCAX R client"
+```
+
+    rcax_GET <- function(path, key = NULL, query=NULL, ...){
+      cli <- crul::HttpClient$new(
+        url = file.path(rcax_base(), path),
+        opts = list(useragent = rcax_ua())
+      )
+      temp <- cli$get(query = query, ...)
+      temp$raise_for_status()
+      x <- temp$parse("UTF-8")
+      err_catcher(x)
+      return(x)
+    }
 ## filter function woes 1
 
 I wanted to be able to only retrieve data for a particular population, so a value in the pop_id column. There was no info, and none of the standard ways I found via online searching worked.
