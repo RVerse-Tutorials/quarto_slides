@@ -1,8 +1,9 @@
 ---
-title: "co-work Oct 25"
+title: "Agile Oct 25, 2023"
 format:
   revealjs: 
-    theme: serif
+    theme: [serif, custom.scss]
+    footer: "[Home](index.html)"
 ---
 
 ## Today's theme

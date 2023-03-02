@@ -1,0 +1,164 @@
+---
+title: "Quick Start: REST API in R"
+subtitle: Getting data into R with from a REST API
+author: Eli Holmes, NWFSC/NOAA
+format:
+  revealjs: 
+    theme: [serif, custom.scss]
+    footer: "[Home](index.html)"
+---
+
+## What is a REST API?
+
+TLDC; It is a way we can get some data off a database using an URL--if the database folk set up a REST API for us.
+
+## Example
+
+Repos on nmfs-opensci using the GitHub REST API
+
+```{r echo=TRUE}
+org <- "nmfs-opensci"
+url <- paste0("https://api.github.com/search/repositories?q=org:", org)
+res <- httr::GET(url)
+dat <- jsonlite::fromJSON(rawToChar(res$content))
+head(dat$items[,c("name", "has_issues")])                      
+```
+## StreamNet CAX REST API
+
+This is the database I want to get data from
+
+[https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/](https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/)
+
+Ok, not so helpful. In particular it doesn't show me the full url and doesn't tell me that I need an API key or how to pass it in!
+
+## What's an API key??
+
+-   **What's an API key??** A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, etc.
+-   **Do I need one?** No! Some REST APIs don't need a key.
+- **How did you know you needed one for CAX?** I didn't. My queries didn't work and so my collaborator went and talked to the CAX folks who set up the REST API.
+
+## Stop: API Keys
+
+rCAX uses public read-only API key for accessing this public database. It is part of the package. But for the raw code shown in this talk I X'd out the key. Even though it is a public and not sensitive.
+
+See the comments at the end for how to write code without including the API key in your code. You'll see that code if you look at the raw qmd file for this talk.
+
+## Get a URL query that works.
+
+Look at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.
+
+    res <- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&page=1&per_page=10")
+    data <-  jsonlite::fromJSON(rawToChar((res$content)))
+
+
+## Tables
+
+Looking at the documentation, you might guess that this gives you "tables". Let's try it:
+
+    res <- httr::GET("https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+    data <-  jsonlite::fromJSON(rawToChar((res$content)))
+
+Jack Pot!! The table ids that I need for my queries!
+
+## Keeping your API key private 1
+
+It is easy to keep this out of your code. Here's how. You are going to save the key with a name in your `.Renviron` file in your user directory. Note you'll need to do this on all your computers if you use multiple because the key stays on the local machine.
+
+Note the key is going to be in plain text. This is approach is not for sensitive keys.
+
+## Keeping your API key private 2
+
+This is going to show you where .Renviron is and open it for you
+
+    install.packages("usethis")
+    usethis::edit_r_environ() 
+
+Paste this into the `.Renviron` file:
+
+    BEST_APIKEY <- “the api key. It is long. Ask database dev for one.”
+
+## Keeping your API key private 3
+
+RESTART R! You have to do this whenever you edit `.Renviron`
+
+Now whenever you need the API key in your code use
+
+    Sys.getenv("BEST_APIKEY", "")
+
+For example, here is how I could set up a url to get tables from the StreamNet REST API. Now I can share this code without sharing or exposing the API_KEY
+
+    url <- paste0(“https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=”, Sys.getenv("BEST_APIKEY", ""))
+    res <- httr::GET(url)
+
+## Keeping your API key private 4
+
+The .Renviron file the API key is unencrypted. There are cases where you want a key to be encrypted (AWS keys, keys to get into your google drive are good examples) . Search online for how to do that. It's the same idea though, just you are using an encrypted key rather than encrypted. In both cases, the key (or secret) stays on your local machine and is not shared in your code.
+
+## Creating your an R client
+
+You are ready to start creating your R package aka R REST API client! Clone someone else's (recent) R package for a client and just edit that.
+
+[https://github.com/nwfsc-math-bio/rCAX](https://nwfsc-math-bio.github.io/rCAX/)
+
+![](https://nwfsc-math-bio.github.io/rCAX/reference/figures/logo2.png){fig-align="center" width="50%"}
+
+## rCAX key functions
+
+-   [`rcax_GET()`](https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_GET.R) - general query
+-   [`rcax_table_query()`](https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_table_query.R) - query for a table given the tablename, makes the query list and calls `rcax_GET()`
+-   [`rcax_hli()`](https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_hli.R) - gets the tablename for a hli (high lev index), calls `rcax_table_query()`
+
+## rcax_GET()
+
+This function is what prepares the url and runs the `GET` call to the REST API. I copied this from the [ropensci/rredlist](https://github.com/ropensci/rredlist) R package (R client for IUCN REST API
+
+The `rcax_GET.R` file is a series of utility functions.
+
+- rcax_GET() - uses crul package
+- rcax_base() - base url to REST API
+- rcax_ua() - creates a user agent string to tell REST API who is pinging it
+- check_key() - gets the API key
+- rcax_parse() - parses the JSON output
+
+## rcax_GET()
+
+```
+rcax_GET <- function(path, key = NULL, query=NULL, ...){
+  cli <- crul::HttpClient$new(
+    url = file.path(rcax_base(), path),
+    opts = list(useragent = rcax_ua())
+  )
+  temp <- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
+  temp$raise_for_status()
+  x <- temp$parse("UTF-8")
+  err_catcher(x)
+  return(x)
+}
+```
+
+## filter function woes 1
+
+I wanted to be able to only retrieve data for a particular population, so a value in the pop_id column. There was no info, and none of the standard ways I found via online searching worked.
+
+## filter function woes 2
+
+Finally in my online searches, I stumbled on the "filter" query parameter approach. I asked chatGPT, "Show me how to create a filter in a REST API query." That got me closer, but there are still multiple way to do it. Then, I was staring at some CAX html page source code and found some Javascript (which I don't know) with a function `filter`. It appeared to use "json" (which I also don't know). Then I asked chatGPT to show me a REST API filter with JSON. Jack pot!
+
+## filter function
+
+-   [`rcax_filter()`](https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_filter.R) - converts a list into json, which is what this REST API wants
+
+## FAQs 1
+
+-   **Is this easier than using Oracle?** Totally. Dead easy. You only need the URL and API Key. The database devs can set up the key however they want. The keys you'll see today are the public and read-only key for the public database (otherwise I would not show them!).
+-   **How do I find out if my database has a REST API?** Maybe it is on their documentation but you might just have to ask. Apparently you can set up REST API for an Oracle database? I know nothing about this, but if you struggle w getting data from an Oracle database, you might ask if they have a REST API set up.
+
+## FAQs 2
+
+-   **How do I find out the syntax REST API URLs?** If you are lucky, the REST API for your database has documentation. Otherwise you will have to resort to trial and error or, better, reach out to the database developers. However, all you really need is 1 or 2 examples of the URL for the REST API.
+-   **What there isn't standard syntax??** Yes and No. The first part url+query params is standard, but you need to find out the query param names and the values that those can take. Filter or subsetting the data is also very idiosyncratic. Documentation is often poor, in which case you need to talk to the database devs.
+
+## FAQs 3
+
+-   **Do I need an API key?** No! Some REST APIs don't need a key, but I think in that case, they often limit how much you can ping the database. I show an example below of using the GitHub REST API which doesn't need a key.
+-   **What's an API key??** A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, certain limit of data, etc. Where do I get it? Depends. Documentaiton should say or contact the database owners.

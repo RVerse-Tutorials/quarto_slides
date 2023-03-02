@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Week3-RVerse-2022_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Week3-RVerse-2022_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Week3-RVerse-2022_files/libs/quarto-html/popper.min.js"></script>
-<script src="Week3-RVerse-2022_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Week3-RVerse-2022_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Week3-RVerse-2022_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Week3-RVerse-2022_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
 
-  <title>Co-work-Oct-25</title>
+  <meta name="author" content="Eli Holmes, NWFSC/NOAA">
+  <title>today - Quick Start: REST API in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Week3-RVerse-2022_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Week3-RVerse-2022_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -27,12 +28,76 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Week3-RVerse-2022_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="Week3-RVerse-2022_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Week3-RVerse-2022_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Week3-RVerse-2022_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Week3-RVerse-2022_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -322,187 +387,188 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" footertext="hellow" class="center">
-  <h1 class="title">Co-work-Oct-25</h1>
-</section>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Quick Start: REST API in R</h1>
+  <p class="subtitle">Getting data into R with from a REST API</p>
 
-<section id="what-kinds-of-projects-are-we-talking-about" class="slide level2">
-<h2>What kinds of projects are we talking about?</h2>
-<p><strong>Complex projects</strong></p>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Eli Holmes, NWFSC/NOAA 
+</div>
+</div>
+</div>
+
+</section>
+<section id="what-is-a-rest-api" class="slide level2">
+<h2>What is a REST API?</h2>
+<p>TLDC; It is a way we can get some data off a database using an URL–if the database folk set up a REST API for us.</p>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Repos on nmfs-opensci using the GitHub REST API</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>org <span class="ot">&lt;-</span> <span class="st">"nmfs-opensci"</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://api.github.com/search/repositories?q=org:"</span>, org)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>res <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(url)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>dat <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(res<span class="sc">$</span>content))</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">head</span>(dat<span class="sc">$</span>items[,<span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"has_issues"</span>)])                      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     name has_issues
+1       quarto_titlepages       TRUE
+2           quarto-thesis       TRUE
+3      NOAA-quarto-simple       TRUE
+4        NOAA-quarto-book       TRUE
+5            QuartoReport       TRUE
+6 12-07-21-GitHub-Actions       TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="api-keys" class="slide level2">
+<h2>API Keys</h2>
+<p>The API Key that I am showing is a public read-only API key for accessing this database.</p>
+<p>Don’t post or commit API Keys for private databases or a write(!!!) key.</p>
+</section>
+<section id="get-a-url-query-that-works." class="slide level2">
+<h2>Get a URL query that works.</h2>
+<p><strong>How?</strong> Look at the documentation, ask someone, ask the database developers. Getting that first URL is the hard part. After that you are golden.</p>
+<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca.json?table_id=4EF09E86-2AA8-4C98-A983-A272C2C2C7E3&amp;XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5&amp;page=1&amp;per_page=10")
+data &lt;-  jsonlite::fromJSON(rawToChar((res$content)))</code></pre>
+</section>
+<section id="streamnet-documentation" class="slide level2">
+<h2>StreamNet Documentation</h2>
+<p>Let’s look at the StreamNet documentation https://www.streamnet.org/resources/exchange-tools/rest-api-documentation/</p>
+<p>Start running GET calls with URLs and see if you can figure out the syntax.</p>
+</section>
+<section id="tables" class="slide level2">
+<h2>Tables</h2>
+<p>Looking at the documentation, you might guess that this gives you “tables”. Who knows what this is but let’s try it:</p>
+<pre><code>res &lt;- httr::GET("https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=7A2F1EA9-4882-49E8-B23D-7DC202C2ACA5")
+data &lt;-  jsonlite::fromJSON(rawToChar((res$content)))</code></pre>
+<p>Jack Pot!! The table ids that I need for my queries!</p>
+</section>
+<section id="keeping-your-api-key-private-1" class="slide level2">
+<h2>Keeping your API key private 1</h2>
+<p>It is easy to keep this out of your code. Here’s how. You are going to save the key with a name in your <code>.Renviron</code> file in your user directory. Note you’ll need to do this on all your computers if you use multiple because the key stays on the local machine.</p>
+<p>Note the key is going to be in plain text. This is approach is not for sensitive keys.</p>
+</section>
+<section id="keeping-your-api-key-private-2" class="slide level2">
+<h2>Keeping your API key private 2</h2>
+<p>This is going to show you where .Renviron is and open it for you</p>
+<pre><code>install.packages("usethis")
+usethis::edit_r_environ() </code></pre>
+<p>Paste this into the <code>.Renviron</code> file:</p>
+<pre><code>BEST_APIKEY &lt;- “the api key. It is long. Ask database dev for one.”</code></pre>
+</section>
+<section id="keeping-your-api-key-private-3" class="slide level2">
+<h2>Keeping your API key private 3</h2>
+<p>RESTART R! You have to do this whenever you edit <code>.Renviron</code></p>
+<p>Now whenever you need the API key in your code use</p>
+<pre><code>Sys.getenv("BEST_APIKEY", "")</code></pre>
+<p>For example, here is how I could set up a url to get tables from the StreamNet REST API. Now I can share this code without sharing or exposing the API_KEY</p>
+<pre><code>url &lt;- paste0(“https://api.streamnet.org/api/v1/ca/tables.json?XApiKey=”, Sys.getenv("BEST_APIKEY", ""))
+res &lt;- httr::GET(url)</code></pre>
+</section>
+<section id="keeping-your-api-key-private-4" class="slide level2">
+<h2>Keeping your API key private 4</h2>
+<p>The .Renviron file the API key is unencrypted. There are cases where you want a key to be encrypted (AWS keys, keys to get into your google drive are good examples) . Search online for how to do that. It’s the same idea though, just you are using an encrypted key rather than encrypted. In both cases, the key (or secret) stays on your local machine and is not shared in your code.</p>
+</section>
+<section id="creating-your-an-r-client" class="slide level2">
+<h2>Creating your an R client</h2>
+<p>You are ready to start creating your R package aka R REST API client! Clone someone else’s (recent) R package for a client and just edit that.</p>
+<p><a href="https://nwfsc-math-bio.github.io/rCAX/">https://github.com/nwfsc-math-bio/rCAX</a></p>
+
+<img data-src="https://nwfsc-math-bio.github.io/rCAX/reference/figures/logo2.png" style="width:50.0%" class="r-stretch quarto-figure-center"></section>
+<section id="rcax-key-functions" class="slide level2">
+<h2>rCAX key functions</h2>
 <ul>
-<li>big tasks with lots of different stages</li>
-<li>potentially many different team members and different needed skills</li>
-<li>Often team projects but could also be a solo project</li>
-<li>Examples: a large report or manuscript, a complex model, a software package, or an software application.</li>
+<li><a href="https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_GET.R"><code>rcax_GET()</code></a> - general query</li>
+<li><a href="https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_table_query.R"><code>rcax_table_query()</code></a> - query for a table given the tablename, makes the query list and calls <code>rcax_GET()</code></li>
+<li><a href="https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_hli.R"><code>rcax_hli()</code></a> - gets the tablename for a hli (high lev index), calls <code>rcax_table_query()</code></li>
 </ul>
 </section>
-<section id="what-is-agile" class="slide level2">
-<h2>What is agile?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>A <strong>lightweight</strong> workflow <strong>structure</strong> for software development which is characterized by 4 key features.</p>
-<p>Traced back to the <a href="https://agilemanifesto.org/">Agile Manifesto</a> written at a 2001 gathering of software development “visionaries”, but the ideas trace back much earlier. Today agile methodologies are the norm in software development.</p>
-</div><div class="column" style="width:50%;">
-<ol type="1">
-<li>Rapid incremental and iterative development</li>
-<li>Open team culture - autonomous, highly communicative, empowered</li>
-<li>Team reflection and continual improvement</li>
-<li>Customer focus - early and frequent delivery of workable products</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-
-<img data-src="images/agile-elements-w-text.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="what-it-is-not-waterfall" class="slide level2">
-<h2>What it is not: Waterfall</h2>
-<p>A detailed workflow from start to finish, years 1 to 4.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/agile-waterfall.png" style="height:40.0%"></p>
-</figure>
-</div>
-</section>
-<section id="originating-ideas" class="slide level2">
-<h2>Originating Ideas</h2>
-
-<img data-src="images/agile-elements.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="industrial-quality-control" class="slide level2">
-<h2>Industrial quality control</h2>
-<p>A key element of agile methodologies is iterative cycles, similar to the Plan-Do-Check-Act (PDCA) cycle:</p>
-
-<img data-src="images/PDCA-Multi-Loop.png" style="width:80.0%" class="r-stretch quarto-figure-center"><p>This was popularized by the work of <strong>William Edwards Deming</strong><sup>1</sup> on how to design workflow and organizational systems that improve quality control.</p>
-<div class="footer">
-<p>1 Leading thinker in statistical quality control and industrial engineering in the 1950s to 1980s.</p>
-</div>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-
-<img data-src="images/agile-deming.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="lean-manufacturing" class="slide level2">
-<h2>Lean manufacturing</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/toyota-way.jpeg" style="width:80.0%"></p>
-</figure>
-</div>
-</div><div class="column" style="width:50%;">
-<p>Lean manufacturing refers to a profound change in the structure and culture of manufacturing teams to a flat hierarchy.</p>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/agile-toyota.png" style="width:80.0%"></p>
-</figure>
-</div>
-</section>
-<section id="rapid-software-application-development-theory" class="slide level2">
-<h2>Rapid software application development theory</h2>
-<p>Lastly, agile is related to work in the 1980s on systems for rapid innovation for software application development (Barry Boehm, James Martin, James Kerr).</p>
-</section>
-<section id="rapid-software-application-development-theory-1" class="slide level2">
-<h2>Rapid software application development theory</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>By definition, innovation is creating something novel so you can’t write a plan to get to the “product” because you don’t know what the product is. Because the customer (who you don’t yet since you are developing something new) has never seen the product, the design process is organic and knowledge gained from the development process itself affects the design at each cycle.</p>
-</div><div class="column" style="width:50%;">
+<section id="rcax_get" class="slide level2">
+<h2>rcax_GET()</h2>
+<p>This function is what prepares the url and runs the <code>GET</code> call to the REST API. I copied this from the <a href="https://github.com/ropensci/rredlist">ropensci/rredlist</a> R package (R client for IUCN REST API</p>
+<p>The <code>rcax_GET.R</code> file is a series of utility functions.</p>
 <ul>
-<li>Rapid iterations with learning</li>
-<li>Working demos (prototypes)</li>
-<li>Tight collaboration with “customer”</li>
-<li>Autonomous teams where members plan their own work and work their own plans.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-
-<img data-src="images/agile-innovation.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="experiential-learning" class="slide level2">
-<h2>Experiential learning</h2>
-<p>In “experiential learning” (David A Kolb, 1970s-1980s), the activity is the teacher via explicit periods of reflection and experimentation (trying something to fix the identified problem).</p>
-
-<img data-src="images/Kolb-stages.jpeg" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-
-<img data-src="images/agile-elements-w-text.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section>
-<section id="agile-methodologies" class="title-slide slide level1 center">
-<h1>Agile methodologies</h1>
-
-</section>
-<section id="kanban" class="slide level2">
-<h2>Kanban</h2>
-<p>.center[ <img src="images/Kanban_board_example.jpeg" width="75%">]</p>
-</section>
-<section id="why-use-a-kanban-board" class="slide level2">
-<h2>Why use a Kanban board?</h2>
-<p>Visualize the flow of work so that we can improve it incrementally and organically–meaning no fixed framework. Just seeing your workflow helps you see the problems.</p>
-<ul>
-<li><p>transparency – visual representation of the team’s workflow</p></li>
-<li><p>iterative and incremental – each task is a well-defined task (ca 1-2 days to move columns)</p></li>
-<li><p>“workable product” – minimize work in progress and <strong>finish tasks before taking on new tasks</strong> “WIP limits”</p></li>
-<li><p>problems with task “flow” are addressed as they arise</p></li>
-<li><p>No “sprints”, time-boxed tasks, or time targets.</p></li>
-</ul>
-<p>.footnote[Atlassian has a nice Kanban video series: <a href="https://www.youtube.com/watch?v=iVaFVa7HYj4">intro</a>, <a href="https://www.youtube.com/watch?v=Bcid33tgq8A">designing your Kanban board</a>, <a href="https://www.youtube.com/watch?v=zEJn6eQO6FE">work in progress limits</a>, <a href="https://www.youtube.com/watch?v=PxXdcQrPIUI">writing kanban cards</a> <br><br>]</p>
-</section>
-<section id="kanban-cards-aka-the-task-card" class="slide level2">
-<h2>Kanban cards: aka the task card</h2>
-<p>Each project task lives on a card that gets edited as it moves. Team members can add comments and notes as it moves.</p>
-<ul>
-<li>a description</li>
-<li>deadline</li>
-<li>assigned team member(s)</li>
-<li>small: 1-2 days of work (not 1 hour)</li>
+<li>rcax_GET() - uses crul package</li>
+<li>rcax_base() - base url to REST API</li>
+<li>rcax_ua() - creates a user agent string to tell REST API who is pinging it</li>
+<li>check_key() - gets the API key</li>
+<li>rcax_parse() - parses the JSON output</li>
 </ul>
 </section>
-<section class="slide level2">
-
-
-<img data-src="images/kanban-board-with-swimlanes.jpeg" class="r-stretch"></section>
-<section id="example-nwfsc-oa-lab" class="slide level2">
-<h2>Example: NWFSC OA Lab</h2>
-<p><span class="citation" data-cites="Paul">@Paul</span> McElhany, NWFSC</p>
-
-<img data-src="images/github-pb-oa-example.png" class="r-stretch"></section>
-<section id="kanban-with-github" class="slide level2">
-<h2>Kanban with GitHub</h2>
-<p>Let’s Kanban with GitHub!</p>
-<p>Note,</p>
+<section id="rcax_get-1" class="slide level2">
+<h2>rcax_GET()</h2>
+<pre><code>rcax_GET &lt;- function(path, key = NULL, query=NULL, ...){
+  cli &lt;- crul::HttpClient$new(
+    url = file.path(rcax_base(), path),
+    opts = list(useragent = rcax_ua())
+  )
+  temp &lt;- cli$get(query = c(query, list(XApiKey = check_key(key))), ...)
+  temp$raise_for_status()
+  x &lt;- temp$parse("UTF-8")
+  err_catcher(x)
+  return(x)
+}</code></pre>
+</section>
+<section id="filter-function-woes-1" class="slide level2">
+<h2>filter function woes 1</h2>
+<p>I wanted to be able to only retrieve data for a particular population, so a value in the pop_id column. There was no info, and none of the standard ways I found via online searching worked.</p>
+</section>
+<section id="filter-function-woes-2" class="slide level2">
+<h2>filter function woes 2</h2>
+<p>Finally in my online searches, I stumbled on the “filter” query parameter approach. I asked chatGPT, “Show me how to create a filter in a REST API query.” That got me closer, but there are still multiple way to do it. Then, I was staring at some CAX html page source code and found some Javascript (which I don’t know) with a function <code>filter</code>. It appeared to use “json” (which I also don’t know). Then I asked chatGPT to show me a REST API filter with JSON. Jack pot!</p>
+</section>
+<section id="filter-function" class="slide level2">
+<h2>filter function</h2>
 <ul>
-<li>Kanban boards are often physical boards.</li>
-<li>Lots of different applications for online Kanban boards.</li>
-<li>Online versions allow you to link cards to “issues”, e.g.&nbsp;GitHub issues.</li>
+<li><a href="https://github.com/nwfsc-math-bio/rCAX/blob/main/R/rcax_filter.R"><code>rcax_filter()</code></a> - converts a list into json, which is what this REST API wants</li>
 </ul>
+</section>
+<section id="faqs-1" class="slide level2">
+<h2>FAQs 1</h2>
+<ul>
+<li><strong>Is this easier than using Oracle?</strong> Totally. Dead easy. You only need the URL and API Key. The database devs can set up the key however they want. The keys you’ll see today are the public and read-only key for the public database (otherwise I would not show them!).</li>
+<li><strong>How do I find out if my database has a REST API?</strong> Maybe it is on their documentation but you might just have to ask. Apparently you can set up REST API for an Oracle database? I know nothing about this, but if you struggle w getting data from an Oracle database, you might ask if they have a REST API set up.</li>
+</ul>
+</section>
+<section id="faqs-2" class="slide level2">
+<h2>FAQs 2</h2>
+<ul>
+<li><strong>How do I find out the syntax REST API URLs?</strong> If you are lucky, the REST API for your database has documentation. Otherwise you will have to resort to trial and error or, better, reach out to the database developers. However, all you really need is 1 or 2 examples of the URL for the REST API.</li>
+<li><strong>What there isn’t standard syntax??</strong> Yes and No.&nbsp;The first part url+query params is standard, but you need to find out the query param names and the values that those can take. Filter or subsetting the data is also very idiosyncratic. Documentation is often poor, in which case you need to talk to the database devs.</li>
+</ul>
+</section>
+<section id="faqs-3" class="slide level2">
+<h2>FAQs 3</h2>
+<ul>
+<li><strong>Do I need an API key?</strong> No! Some REST APIs don’t need a key, but I think in that case, they often limit how much you can ping the database. I show an example below of using the GitHub REST API which doesn’t need a key.</li>
+<li><strong>What’s an API key??</strong> A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, certain limit of data, etc. Where do I get it? Depends. Documentaiton should say or contact the database owners.</li>
+</ul>
+
 <div class="footer footer-default">
-
+<p><a href="index.html">Home</a></p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Week3-RVerse-2022_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -697,6 +763,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -735,7 +839,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -773,24 +894,42 @@
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
