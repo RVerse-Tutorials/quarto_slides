@@ -229,5 +229,96 @@
     "title": "Quick Start: REST API in R",
     "section": "FAQs 3",
     "text": "FAQs 3\n\nDo I need an API key? No! Some REST APIs don’t need a key, but I think in that case, they often limit how much you can ping the database. I show an example below of using the GitHub REST API which doesn’t need a key.\nWhat’s an API key?? A kind of token. Gives you access and gives you particular permissions, like read-only, read-write, certain limit of data, etc. Where do I get it? Depends. Documentaiton should say or contact the database owners.\n\n\n\nHome"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#todays-plan",
+    "href": "Fish549-Mar-3-2023.html#todays-plan",
+    "title": "Intro to Lean and Agile",
+    "section": "Today’s Plan",
+    "text": "Today’s Plan\n\nA Kaizen (aka continuous improvement) group game!\nLearn about the core ideas of “lean” and “Agile” for team projects\nIntro to the basics of Scrum Sprints\nDemo of Scrum Sprint on GitHub project boards"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#what-is-agile",
+    "href": "Fish549-Mar-3-2023.html#what-is-agile",
+    "title": "Intro to Lean and Agile",
+    "section": "What is agile?",
+    "text": "What is agile?\nA lightweight workflow structure for software development which is characterized by 4 key features.\nTerm is traced back to the 2001 Agile Manifesto, but the ideas are much earlier and broader. Very related to Lean Methodology (aka Toyota Way).\n\n\n\n\n\n\nImportant\n\n\nAgile methods are ubiquitous in software developement. This is how modern teams work because it Drives Creation and Completion"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#four-elements",
+    "href": "Fish549-Mar-3-2023.html#four-elements",
+    "title": "Intro to Lean and Agile",
+    "section": "Four elements",
+    "text": "Four elements\n\n\n\n\n\n\n\n\n\nBreaking work into chunks\nReflection and planning after each chunk\nRadically anti-hierarchical team structure\nRegular facetime\nRespect for the individual (learning focus)\nEarly and regular end-user feedback"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#iterative-cycles",
+    "href": "Fish549-Mar-3-2023.html#iterative-cycles",
+    "title": "Intro to Lean and Agile",
+    "section": "Iterative Cycles",
+    "text": "Iterative Cycles\nA key principle: dividing work into 10-30 day chunks with plan and review (or check) elements"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#self-organizing-teams",
+    "href": "Fish549-Mar-3-2023.html#self-organizing-teams",
+    "title": "Intro to Lean and Agile",
+    "section": "Self-organizing teams",
+    "text": "Self-organizing teams\n\nAdopt habits that organically improve team flow and efficiency.\n\n\n\nTask boards\n\nvisualize your workflow\nteam awareness\nencourages cycles of work\nhelps team not waste time on unimportant things\n\n\nFacetime\n\nshort daily check-ins, aka “stand-ups”\nco-working, group or often paired"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#task-boards-1",
+    "href": "Fish549-Mar-3-2023.html#task-boards-1",
+    "title": "Intro to Lean and Agile",
+    "section": "Task boards",
+    "text": "Task boards"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#why-use-a-task-board",
+    "href": "Fish549-Mar-3-2023.html#why-use-a-task-board",
+    "title": "Intro to Lean and Agile",
+    "section": "Why use a task board?",
+    "text": "Why use a task board?\n\n\n\n\n\n\n\n\n\nteam awareness fundamentally changes the team dynamic\nforces work to be iterative and incremental\nhelps team define a minimally complete chunk of work that can be reviewed\nquickly reveals bottlenecks and barriers"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#keeping-the-task-board-up-to-date",
+    "href": "Fish549-Mar-3-2023.html#keeping-the-task-board-up-to-date",
+    "title": "Intro to Lean and Agile",
+    "section": "Keeping the task board up to date",
+    "text": "Keeping the task board up to date\nKeeping the team task board fresh won’t happen by itself. Everyone get pulled into their own rabbit hole and then team becomes silo-ed.\n\n\nDaily Standup\n\n\n\n\n\n\ntime-boxed 15 minutes\nwhat I did yesterday, what I plan to do today, any barriers\na designated team facilitator runs this\ndone around the task board\ncan be done asynchronously but much better if it is live\ngets the team in flow"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#scrum",
+    "href": "Fish549-Mar-3-2023.html#scrum",
+    "title": "Intro to Lean and Agile",
+    "section": "Scrum",
+    "text": "Scrum\nMost popular and widely used method in software development, but not restricted to software at all.\n\nFormalizes the workflow cycles and events"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#scrum-roles-and-artifacts",
+    "href": "Fish549-Mar-3-2023.html#scrum-roles-and-artifacts",
+    "title": "Intro to Lean and Agile",
+    "section": "Scrum Roles and Artifacts",
+    "text": "Scrum Roles and Artifacts\n\n\nRoles\n\nProduct Owner: Job is to decide what the group is doing and curate the backlog of tasks\nScrum master: Facilitator and coach the team\nDevelopers: Do the tasks\n\n\nArtifacts\n\nBacklog: All the planned tasks in various stages of ready\nSprint Backlog: Things to be completed in current sprint\nProduct Increment: What you will complete in this sprint. Needs to be something you can demo or present"
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#sprint-cycle",
+    "href": "Fish549-Mar-3-2023.html#sprint-cycle",
+    "title": "Intro to Lean and Agile",
+    "section": "Sprint Cycle",
+    "text": "Sprint Cycle\nProduct Owner Works on the backlog and gets tasks ready for next sprint.\n\n\nScrum Master\n\nDay 1: Facilitates planning mtg\nDay 8-28:\n\nRuns daily standups.\nHelps team members with barriers\nWorks with product owner\n\nLast day: Facilitate Retrospective meeting\n\n\nTeam\n\nDay 1: Sprint Planning\nDay 8-28: Work on tasks with daily standups\n2 days before end of sprint: Sprint Review Show work to “customer”1\nLast day: Retrospective Team reflects on how their process of work did and picks one thing to do better\n\n\n\n\n1 In a science context, this might be a presentation outside of the team. Formal enough that you need to do a good job."
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#i-left-out-some-big-parts-of-scrum",
+    "href": "Fish549-Mar-3-2023.html#i-left-out-some-big-parts-of-scrum",
+    "title": "Intro to Lean and Agile",
+    "section": "I left out some big parts of Scrum",
+    "text": "I left out some big parts of Scrum\nThis is a Lean/Agile/Kaizen approach\n\nradically anti-hierarchical team structure\nimportance of intentionality\nrethinking of human agency within team structures\nradical candor and authenticity within teams\n\nVelocity\nScrum in software dev is used to speed up development cycles. Velocity and measuring the size of tasks is a key part of Scrum in this context."
+  },
+  {
+    "objectID": "Fish549-Mar-3-2023.html#videos-to-learn-more",
+    "href": "Fish549-Mar-3-2023.html#videos-to-learn-more",
+    "title": "Intro to Lean and Agile",
+    "section": "Videos to learn more",
+    "text": "Videos to learn more\n\n\nKanban Boards\nAtlassian Kanban video series\n intro\n designing your Kanban board\n work in progress limits\n writing kanban cards\n\nScrum\nThese cover the basic elements\n 5 minute intro to Scrum Basic Structure of Scrum\n 12 minute intro to Scrum Product development perspective\n LabScrum\n\n\n\n\n\nHome"
   }
 ]
