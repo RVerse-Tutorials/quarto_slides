@@ -7,7 +7,6 @@ format:
   revealjs: 
     theme: [sky, custom.scss]
     footer: "[Home](index.html){style='padding-right: 100px;'}"
-    self-contained: true
 ---
 
 ## Today's Plan {style="\"position:absolute;" top="20;" left="0"}
