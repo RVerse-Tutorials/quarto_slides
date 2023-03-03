@@ -235,7 +235,7 @@
     "href": "Agile-Mar-3-2023.html#todays-plan",
     "title": "Intro to Lean and Agile",
     "section": "Today’s Plan",
-    "text": "Today’s Plan\n\nA Kaizen (aka continuous improvement) group game!\nLearn about the core ideas of “lean” and “Agile” for team projects\nIntro to the basics of Scrum Sprints\nDemo of Scrum Sprint on GitHub project boards"
+    "text": "Today’s Plan\n\nA Kaizen/Kaikaku group game!\nLearn about the core ideas of “lean” and “Agile” for team projects\nIntro to the basics of Scrum Sprints\nDemo of Scrum Sprint on GitHub project boards"
   },
   {
     "objectID": "Agile-Mar-3-2023.html#what-is-agile",
@@ -312,13 +312,34 @@
     "href": "Agile-Mar-3-2023.html#i-left-out-some-big-parts-of-scrum",
     "title": "Intro to Lean and Agile",
     "section": "I left out some big parts of Scrum",
-    "text": "I left out some big parts of Scrum\nThis is a Lean/Agile/Kaizen approach\n\nradically anti-hierarchical team structure\nimportance of intentionality\nrethinking of human agency within team structures\nradical candor and authenticity within teams\n\nVelocity\nScrum in software dev is used to speed up development cycles. Velocity and measuring the size of tasks is a key part of Scrum in this context."
+    "text": "I left out some big parts of Scrum\nThis is a Lean/Agile/Kaizen methodology\n\nradically anti-hierarchical team structure\nrethinking of human agency within team structures\nradical candor and authenticity within teams\n\nScrum as implemented in software development\nUser Stories and Epics How you plan tasks as Scrum is implemented in software development.\nVelocity Velocity and measuring the size of tasks is a key part of Scrum in software development."
+  },
+  {
+    "objectID": "Agile-Mar-3-2023.html#next-steps-to-learn",
+    "href": "Agile-Mar-3-2023.html#next-steps-to-learn",
+    "title": "Intro to Lean and Agile",
+    "section": "Next steps to learn",
+    "text": "Next steps to learn\n\nWatch some of the videos or read a intro book. I found this 3-hr video course most helpful. Free via UW Libraries. Scrum Fundamentals\nOnce you understand the basics, start experimenting with sprints and sprint planning on your own (solo), e.g. for a talk or a class paper. Get used to the plan, work from tasks, review framework before trying with a group.\nWatch me plan a simple solo sprint. 5 minute video. Simple Sprint Planning using GitHub"
+  },
+  {
+    "objectID": "Agile-Mar-3-2023.html#example-sprint-with-github",
+    "href": "Agile-Mar-3-2023.html#example-sprint-with-github",
+    "title": "Intro to Lean and Agile",
+    "section": "Example Sprint with GitHub",
+    "text": "Example Sprint with GitHub"
   },
   {
     "objectID": "Agile-Mar-3-2023.html#videos-to-learn-more",
     "href": "Agile-Mar-3-2023.html#videos-to-learn-more",
     "title": "Intro to Lean and Agile",
     "section": "Videos to learn more",
-    "text": "Videos to learn more\n\n\nKanban Boards\nAtlassian Kanban video series\n intro\n designing your Kanban board\n work in progress limits\n writing kanban cards\n\nScrum\nThese cover the basic elements\n 5 minute intro to Scrum Basic Structure of Scrum\n 12 minute intro to Scrum Product development perspective\n LabScrum\n\n\n\n\n\nHome"
+    "text": "Videos to learn more\n\n\nKanban Boards\nAtlassian Kanban video series\n intro\n designing your Kanban board\n work in progress limits\n writing kanban cards\n\nScrum\nThese cover the basic elements\n 5 minute intro to Scrum Basic Structure of Scrum\n 12 minute intro to Scrum Product development perspective\n LabScrum"
+  },
+  {
+    "objectID": "Agile-Mar-3-2023.html#some-references-i-liked",
+    "href": "Agile-Mar-3-2023.html#some-references-i-liked",
+    "title": "Intro to Lean and Agile",
+    "section": "Some references I liked",
+    "text": "Some references I liked\n\nI really liked this video course. You can get it free via UW Libraries. Scrum Fundamentals\nScrum: The Ultimate Beginner’s Guide To Learn And Master Scrum Agile Framework by Hein Smith\nScrum: The Art of Doing Twice the Work in Half the Time by Jeff Sutherland History, won’t teach you Scrum\n\n\n\n\nHome"
   }
 ]

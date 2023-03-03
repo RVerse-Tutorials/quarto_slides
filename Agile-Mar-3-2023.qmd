@@ -11,7 +11,7 @@ format:
 
 ## Today's Plan {style="\"position:absolute;" top="20;" left="0"}
 
--   A Kaizen (aka continuous improvement) group game!
+-   A Kaizen/Kaikaku group game!
 -   Learn about the core ideas of "lean" and "Agile" for team projects
 -   Intro to the basics of Scrum Sprints
 -   Demo of Scrum Sprint on GitHub project boards
@@ -183,20 +183,39 @@ Formalizes the workflow cycles and events
 
 ## I left out some big parts of Scrum {.smaller}
 
-### This is a Lean/Agile/Kaizen approach
+**This is a Lean/Agile/Kaizen methodology**
 
 -   radically anti-hierarchical team structure
--   importance of intentionality
 -   rethinking of human agency within team structures
 -   radical candor and authenticity within teams
 
-### Velocity
+**Scrum as implemented in software development**
 
-Scrum in software dev is used to speed up development cycles. Velocity and measuring the size of tasks is a key part of Scrum in this context.
+**User Stories and Epics** How you plan tasks as Scrum is implemented in software development.
 
-## 
+**Velocity** Velocity and measuring the size of tasks is a key part of Scrum in software development.
 
-{{< video https://www.youtube.com/embed/eit4s9hRwfA width="100%" height="100%" >}}
+## Next steps to learn
+
+* Watch some of the videos or read a intro book. I found this 3-hr video course most helpful. Free via UW Libraries. [Scrum Fundamentals](https://learning.oreilly.com/videos/scrum-fundamentals/9780133749076/)
+
+* Once you understand the basics, start experimenting with sprints and sprint planning on your own (solo), e.g. for a talk or a class paper. Get used to the plan, work from tasks, review framework before trying with a group.
+
+* Watch me plan a simple solo sprint. 5 minute video. [Simple Sprint Planning using GitHub](https://youtu.be/eit4s9hRwfA)
+
+
+## Example Sprint with GitHub
+
+::: columns
+::: {.column width="50%"}
+![](images/simple-gh-sprint-tasks.png){fig-align="center" width="100%"}
+:::
+::: {.column style="width: 50%; color: blue"}
+![](images/simple-gh-sprint-board.png){fig-align="center" width="100%"}
+:::
+:::
+
+
 
 ## Videos to learn more
 
@@ -227,3 +246,17 @@ These cover the basic elements
 [{{< fa brands youtube >}} LabScrum](https://labscrum.org/video-resources)
 :::
 :::
+
+## Some references I liked
+
+* I really liked this video course. You can get it free via UW Libraries. [Scrum Fundamentals](https://learning.oreilly.com/videos/scrum-fundamentals/9780133749076/)
+
+* Scrum: The Ultimate Beginner’s Guide To Learn And Master Scrum Agile Framework by Hein Smith
+
+* Scrum: The Art of Doing Twice the Work in Half the Time by Jeff Sutherland *History, won't teach you Scrum*
+
+
+
+
+
+
