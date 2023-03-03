@@ -5,7 +5,7 @@ project:
     - index.qmd
     - co-work-oct-25.qmd
     - REST-API-feb-28.qmd
-    - Fish549-Mar-3-2023.qmd
+    - Agile-Mar-3-2023.qmd
 
 website:
   title: "Misc Presentations"
@@ -19,7 +19,7 @@ website:
       - text: "REST API Feb 2023"
         file: REST-API-feb-28.qmd
       - text: "Fish 549 Mar 2023"
-        file: Fish549-Mar-3-2023.qmd
+        file: Agile-Mar-3-2023.qmd
 
 
 format:
