@@ -1,5 +1,5 @@
 ---
-title: "Intro to Lean and Agile"
+title: "Intro to Kaizen and Agile"
 subtitle: "for science teams"
 author: Eli Holmes<br>Northwest Fisheries Science Center, NOAA<br>[NMFS Open Science](https://nmfs-opensci.github.io/)<br><br>Fish 549 March 3, 2023
 logo: https://raw.githubusercontent.com/nmfs-opensci/assets/main/logo/nmfs-opensci-logo3.png
@@ -11,22 +11,46 @@ format:
 
 ## Today's Plan {style="\"position:absolute;" top="20;" left="0"}
 
--   A Kaizen/Kaikaku group game!
--   Learn about the core ideas of "lean" and "Agile" for team projects
+-   A Kaizen group game! The [Ball Point Game](https://www.101ways.com/agile-games-ball-point-game)
+-   Learn about the core ideas of "Agile" for team projects
 -   Intro to the basics of Scrum Sprints
 -   Demo of Scrum Sprint on GitHub project boards
 
+## What is Kaizen? {.smaller}
+
+Kaizen means continuous improvement but refers more specifically to a cycle of improvement. In it's simple^[Kaizen more classically is shown with more intermediary steps] form, it is the Deming Cycle
+
+* Plan
+* Do = work the plan
+* Check = how'd we do?
+* Act (or Reflect) = think about what the results mean and what you should do in response
+
+But Kaizen is more than that. Kaizen also involves flattening team hierarchy to foster improvement and innovation. Kaizen seeks to "empower" the worker/developers and flips the role of the manager from "boss" to coach/teacher/servant.
+
+
 ## What is agile?
 
-A **lightweight** workflow **structure** for software development which is characterized by 4 key features.
+A **lightweight** workflow **structure** for software development which is characterized by 4 key features, 2 of which are closely Kaizen related. In this lecture, I'll introduce SCRUM, a very popular agile workflow process.
 
-Term is traced back to the 2001 [Agile Manifesto](https://agilemanifesto.org/), but the ideas are much earlier and broader. Very related to Lean Methodology (aka Toyota Way).
+The term "agile" is traced back to the 2001 [Agile Manifesto](https://agilemanifesto.org/)^[This was a meeting of innovation visionaries who were all exploring similar ideas of how the structure of teams affects innovation, but in different ways.], but the ideas are much earlier and broader. It is very related to Kaizen ideas and "Toyota Way".
 
-::: callout-important
-Agile methods are ubiquitous in software developement. This is how modern teams work because it [Drives Creation and Completion]{style="color: blue"}
+
+
+## Are these useful for science?
+
+Yes! These are methods for driving innovation and discovery.
+
+Elements of Kaizen and agile can be used in isolation. These are proven methods to improve team collaboration and project workflow.
+
+::: callout-note
+Agile methods are ubiquitous in software development. But also widely used in any innovation-driven industry.
+
+Kaizen is a core element of Lean Manufacturing, a very influential methodology in modern manufacturing. Search for "Toyota Way".
 :::
 
-## Four elements {.smaller}
+## Four elements of agile {.smaller}
+
+I divide the ideas in agile methodologies into four areas that are always present in one form or another.
 
 ::: columns
 ::: {.column width="50%"}
@@ -49,13 +73,9 @@ A key principle: dividing work into 10-30 day chunks with plan and review (or ch
 
 ![](images/PDCA-Multi-Loop.png){fig-align="center" width="80%"}
 
-## Self-organizing teams {.smaller}
+## Flat, self-organizing teams {.smaller}
 
-<hr>
-
-Adopt habits that organically improve team flow and efficiency.
-
-<hr>
+Flat team structure, team member "agency" and a spirit of cooperation instead of competition  is central to Kaizen and agile. Two key agile team habits that support this are:
 
 ::: columns
 ::: {.column width="50%"}
@@ -64,6 +84,7 @@ Adopt habits that organically improve team flow and efficiency.
 -   visualize your workflow
 -   team awareness
 -   encourages cycles of work
+-   encourages intentionality
 -   helps team not waste time on unimportant things
 :::
 ::: {.column width="50%"}
@@ -75,6 +96,8 @@ Adopt habits that organically improve team flow and efficiency.
 :::
 
 ## Task boards
+
+Here is a task board set up on a GitHub project board.
 
 ![](images/GitHub-task-board.png){fig-align="center" width="100%"}
 
@@ -111,7 +134,7 @@ Keeping the team task board fresh won't happen by itself. Everyone get pulled in
 
 time-boxed 15 minutes
 
-what I did yesterday, what I plan to do today, any barriers
+FORM: what I did yesterday, what I plan to do today, any barriers
 
 a designated team facilitator runs this
 
@@ -178,7 +201,7 @@ Formalizes the workflow cycles and events
 :::
 
 ::: smaller
-1 In a science context, this might be a presentation outside of the team. Formal enough that you need to do a good job.
+1 In a science context, this might be an informal presentation. Formal enough that you need to do a good job, not so formal as to need to spend a lot of time on polishing it.
 :::
 
 ## I left out some big parts of Scrum {.smaller}
