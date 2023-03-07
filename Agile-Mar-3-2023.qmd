@@ -1,7 +1,7 @@
 ---
 title: "Intro to Kaizen and Agile"
 subtitle: "for science teams"
-author: Eli Holmes<br>Northwest Fisheries Science Center, NOAA<br>[NMFS Open Science](https://nmfs-opensci.github.io/)<br><br>Fish 549 March 3, 2023
+author: Eli Holmes<br>Northwest Fisheries Science Center, NOAA<br>[NMFS Open Science](https://nmfs-opensci.github.io/)<br><br>Fish 549 March 3, 2023<br>[https://eeholmes.github.io/talks/](https://eeholmes.github.io/talks/)
 logo: https://raw.githubusercontent.com/nmfs-opensci/assets/main/logo/nmfs-opensci-logo3.png
 format:
   revealjs: 
