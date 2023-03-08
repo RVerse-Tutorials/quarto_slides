@@ -18,7 +18,7 @@ format:
 
 ## What is Kaizen? {.smaller}
 
-Kaizen means continuous improvement but refers more specifically to a cycle of improvement. In it's simple^[Kaizen more classically is shown with more intermediary steps] form, it is the Deming Cycle
+Kaizen means continuous improvement but refers more specifically to a cycle of improvement. In its simple^[Kaizen more classically is shown with more intermediary steps] form, it is the Deming Cycle
 
 * Plan
 * Do = work the plan
